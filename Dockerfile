@@ -7,7 +7,6 @@ RUN npm install googleapis
 # Đặt biến môi trường
 ENV N8N_SECURE_COOKIE=false
 ENV NODE_FUNCTION_ALLOW_EXTERNAL=googleapis
-ENV NODE_PATH="/data/node_modules"
 
 # Expose port
 EXPOSE 5678
