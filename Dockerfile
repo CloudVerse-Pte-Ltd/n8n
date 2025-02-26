@@ -8,10 +8,12 @@ RUN npm install -g googleapis
 RUN mkdir -p /home/node/.n8n && chmod -R 777 /home/node/.n8n
 
 # Thiết lập biến môi trường
+# Thiết lập biến môi trường
 ENV N8N_DISABLE_SSL_VERIFY=true
 ENV N8N_SECURE_COOKIE=false
 ENV N8N_PROTOCOL=http
 ENV N8N_PORT=5678
+ENV NODE_FUNCTION_ALLOW_EXTERNAL=*
 
 # Chạy với user node
 USER node
