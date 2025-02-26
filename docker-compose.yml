@@ -13,7 +13,8 @@ services:
     environment:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
-      - N8N_SECURE_COOKIE=false
+      - N8N_SECURE_COOKIE=false  # Tắt SSL Cookie
+      - N8N_PROTOCOL=http        # Chạy HTTP thay vì HTTPS
       - N8N_EXTERNAL_MODULES_ALLOWLIST=*
       - N8N_DISABLE_EXTERNAL_MODULES_CHECKS=true
       - N8N_DEFAULT_BINARY_DATA_MODE=default
