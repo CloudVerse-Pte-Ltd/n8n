@@ -11,7 +11,8 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
       - N8N_SECURE_COOKIE=false
-      - N8N_EXTERNAL_MODULES_ALLOWLIST="*"
+      - N8N_EXTERNAL_MODULES_ALLOWLIST=googleapis
+      - N8N_DISABLE_EXTERNAL_MODULES_CHECKS=true
       - NODE_ENV=production
     volumes:
       - ~/.n8n:/home/node/.n8n
