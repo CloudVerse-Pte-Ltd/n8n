@@ -1,22 +1,17 @@
-# Sử dụng image node chính thức làm base
-FROM node:20-slim
+FROM n8nio/n8n:latest
 
-# Đặt thư mục làm việc
-WORKDIR /usr/src/app
+# Chạy với quyền root để cài đặt
+USER root
+RUN npm install -g googleapis
 
-# Cài đặt n8n toàn cục
-RUN npm install -g n8n@latest
+# Tạo thư mục .n8n và cấp quyền
+RUN mkdir -p /home/node/.n8n && chmod -R 777 /home/node/.n8n
 
-# Tạo thư mục dữ liệu cho n8n và cấp quyền
-RUN mkdir -p /root/.n8n \
-    && chmod -R 755 /root/.n8n
+# Thiết lập biến môi trường
+ENV N8N_DISABLE_SSL_VERIFY=true
+ENV N8N_PROTOCOL=http
+ENV N8N_PORT=5678
 
-# Thiết lập biến môi trường cho n8n
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-ENV N8N_SKIP_WEBHOOK_DEREGISTRATION_ON_SHUTDOWN=true
-
-# Mở port mặc định của n8n
-EXPOSE 5678
-
-# Khởi động n8n khi container chạy
-CMD ["n8n", "start"]
+# Chạy với user node
+USER node
+CMD ["n8n"]
