@@ -1,13 +1,17 @@
 FROM n8nio/n8n:latest
 
-# Cài đặt thư viện googleapis với root
+# Chạy với quyền root để cài đặt và cấp quyền
 USER root
 RUN npm install -g googleapis
+
+# Tạo thư mục .n8n và cấp quyền đầy đủ
+RUN mkdir -p /home/node/.n8n && chmod -R 777 /home/node/.n8n
 
 # Thiết lập biến môi trường
 ENV N8N_DISABLE_SSL_VERIFY=true
 ENV N8N_PROTOCOL=http
 ENV N8N_PORT=5678
 
-# Chạy với root thay vì user node
+# Chạy với user node
+USER node
 CMD ["n8n"]
