@@ -9,5 +9,3 @@ RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
 
 # Chạy với user node để tránh lỗi quyền hạn
 USER node
-
-CMD ["n8n"]
