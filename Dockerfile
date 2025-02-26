@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y \
 # Cài đặt n8n toàn cục
 RUN npm install -g n8n@latest
 
-# Cài đặt thư viện googleapis cho Node.js
-RUN npm install -g @googleapis
-
 # Tạo thư mục dữ liệu cho n8n và cấp quyền
 RUN mkdir -p /root/.n8n \
     && chmod -R 755 /root/.n8n
