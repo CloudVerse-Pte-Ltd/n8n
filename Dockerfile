@@ -2,7 +2,7 @@ FROM n8nio/n8n:latest
 
 # Chạy với quyền root để cài đặt
 USER root
-RUN npm install -g n8n googleapis  # Cài cả n8n và googleapis
+RUN npm install -g googleapis
 
 # Tạo thư mục .n8n và cấp quyền
 RUN mkdir -p /home/node/.n8n && chmod -R 777 /home/node/.n8n
