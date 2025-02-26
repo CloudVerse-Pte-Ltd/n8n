@@ -17,6 +17,7 @@ services:
       - N8N_EXTERNAL_MODULES_ALLOWLIST=*
       - N8N_DISABLE_EXTERNAL_MODULES_CHECKS=true
       - N8N_DEFAULT_BINARY_DATA_MODE=default
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
       - NODE_ENV=production
     volumes:
       - ~/.n8n:/home/node/.n8n
