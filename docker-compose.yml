@@ -11,13 +11,12 @@ services:
       - "5678:5678"
     environment:
       - N8N_PORT=5678
-      - N8N_SECURE_COOKIE=false  # Tắt SSL Cookie
-      - N8N_PROTOCOL=http        # Chạy HTTP thay vì HTTPS
+      - N8N_PROTOCOL=http  # Ép dùng HTTP
+      - N8N_SECURE_COOKIE=false  # Tắt secure cookie
+      - N8N_DISABLE_SSL_VERIFY=true  # Bỏ qua kiểm tra SSL
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - NODE_FUNCTION_ALLOW_EXTERNAL=googleapis
       - N8N_EXTERNAL_MODULES_ALLOWLIST=*
-      - N8N_DISABLE_EXTERNAL_MODULES_CHECKS=true
-      - N8N_DEFAULT_BINARY_DATA_MODE=default
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
-      - NODE_FUNCTION_ALLOW_EXTERNAL=*
-      - NODE_ENV=production
+      - N8N_HOST=0.0.0.0  # Đảm bảo lắng nghe trên tất cả interface
     volumes:
       - ~/.n8n:/home/node/.n8n
