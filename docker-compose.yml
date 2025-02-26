@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=n8n
+      - POSTGRES_DB=n8n
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    volumes:
+      - redisdata:/data
+
+  n8n:
+    build: .
+    ports:
+      - "5678:5678"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - DB_TYPE=postgres
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8n
+      - QUEUE_BULL_REDIS_HOST=redis
+
+  n8n-worker:
+    build: .
+    command: "n8n worker"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - DB_TYPE=postgres
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8n
+      - QUEUE_BULL_REDIS_HOST=redis
+
+volumes:
+  pgdata:
+  redisdata:
