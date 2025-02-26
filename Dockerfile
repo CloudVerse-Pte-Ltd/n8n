@@ -4,12 +4,6 @@ FROM node:20-slim
 # Đặt thư mục làm việc
 WORKDIR /usr/src/app
 
-# Cài đặt các gói hệ thống cần thiết
-RUN apt-get update && apt-get install -y \
-    postgresql-client \
-    redis-tools \
-    && rm -rf /var/lib/apt/lists/*
-
 # Cài đặt n8n toàn cục
 RUN npm install -g n8n@latest
 
