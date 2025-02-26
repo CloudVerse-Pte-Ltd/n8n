@@ -6,17 +6,17 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: n8n
-    user: root
     ports:
       - "5678:5678"
     environment:
       - N8N_PORT=5678
-      - N8N_PROTOCOL=http  # Ép dùng HTTP
-      - N8N_SECURE_COOKIE=false  # Tắt secure cookie
-      - N8N_DISABLE_SSL_VERIFY=true  # Bỏ qua kiểm tra SSL
+      - N8N_PROTOCOL=http
+      - N8N_SECURE_COOKIE=false
+      - N8N_DISABLE_SSL_VERIFY=true
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - NODE_FUNCTION_ALLOW_EXTERNAL=googleapis
-      - N8N_EXTERNAL_MODULES_ALLOWLIST=*
-      - N8N_HOST=0.0.0.0  # Đảm bảo lắng nghe trên tất cả interface
+      - N8N_EXTERNAL_MODULES_ALLOWLIST=googleapis
+      - N8N_HOST=0.0.0.0
+    command: ["n8n"]
     volumes:
       - ~/.n8n:/home/node/.n8n
