@@ -1,24 +1,17 @@
-# Sử dụng n8n chính thức
+# Sử dụng image chính thức của n8n từ Docker Hub
 FROM n8nio/n8n:latest
 
-# Chuyển sang user root để cài đặt
+# Cài đặt thư viện googleapis
 USER root
-
-# Cài đặt thư viện Google APIs
 RUN npm install -g googleapis
 
-# Đặt lại quyền cho user node
-RUN chown -R node:node /home/node
-
-# Chuyển về user node để chạy n8n
+# Quay lại user mặc định của n8n
 USER node
 
-# Đặt biến môi trường
-ENV N8N_SECURE_COOKIE=false
-ENV NODE_FUNCTION_ALLOW_EXTERNAL=googleapis
-
-# Expose port
-EXPOSE 5678
+# Thiết lập biến môi trường để bỏ qua SSL
+ENV N8N_DISABLE_SSL_VERIFY=true
+ENV N8N_PROTOCOL=http
+ENV N8N_PORT=5678
 
 # Chạy n8n
 CMD ["n8n"]
