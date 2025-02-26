@@ -13,6 +13,7 @@ services:
       - N8N_SECURE_COOKIE=false
       - N8N_EXTERNAL_MODULES_ALLOWLIST=googleapis
       - N8N_DISABLE_EXTERNAL_MODULES_CHECKS=true
+      - N8N_DEFAULT_BINARY_DATA_MODE=default
       - NODE_ENV=production
     volumes:
       - ~/.n8n:/home/node/.n8n
